@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+4<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -13,7 +13,7 @@
 	
 	<div class="container">
 		<hr/>
-		<form action="app1-res.php" method="post">
+		<form action="Result.php" method="post">
   <div class="form-row align-items-center">
     <div class="col-auto">
       <label class="sr-only" for="inlineFormInput">number</label>
