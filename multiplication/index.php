@@ -12,7 +12,12 @@
 <body>
 	
 	<div class="container">
-		<hr/>
+		<nav class="navbar sticky-top navbar-dark bg-warning">
+  <a class="navbar-brand" href="index.php"><h6 class="text-capitalize text-dark">Wellcome</h6></a>
+</nav>
+<div class="alert alert-dark" role="alert">
+    <strong>Well done!</strong> You can use This App .
+</div>
 		<form action="Result.php" method="post">
   <div class="form-row align-items-center">
     <div class="col-auto">
@@ -29,7 +34,7 @@
       </div>
     </div>
     <div class="col-auto">
-      <button type="submit" class="btn btn-primary mb-2">Submit</button>
+      <button type="submit" class="btn btn-dark mb-2">Submit</button>
     </div>
   </div>
 </form>

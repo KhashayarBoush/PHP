@@ -12,9 +12,23 @@
 <body>
 
 <div class="container">
-  <h2>Result</h2>
+	<nav class="navbar sticky-top navbar-dark bg-warning">
+  <a class="navbar-brand" href="index.php"><button type="button" class="btn btn-outline-dark">Back</button>
+</a>
+</nav>
+
+<?php
+	$number1 = $_POST['Number'];
+	$rep = $_POST['hm'];
+	$res = 0;
+	if (!$number1 || !$rep){
+		echo "<div class='alert alert-danger' role='alert'>
+    <strong>Empty Value is Set</strong>.
+</div>";
+	}
+	else{?>
   <div class="table-responsive">
-  <table class="table table-bordered table-hover table-sm table-striped table-dark">
+  <table class="table table-bordered table-hover table-sm table-striped table-dark text-center" >
   	<thead>
       <tr>
         <th scope="col">Number</th>
@@ -25,23 +39,20 @@
     <tbody>
 
 	<?php
-	$number1 = $_POST['Number'];
-	$rep = $_POST['hm'];
-
-	$res = 0;
 	 function Mul($v1,$v2){
 		global $res;
 		for($i=0;$i<=$v2;$i++){
 			$res = $i*$v1; ?>
 		    <tr>
 			<td ><?php echo "$i"; ?></td>
-			<td><?php echo "$v1"; ?></td>
+			<td><?php echo "* $v1"; ?></td>
 			<td class="bg-warning"><?php echo "$res"; ?></td>
 			</tr>
 		<?php } ?>
 
 	<?php } ?>
-	<?php Mul($number1,$rep); ?>
+	<?php Mul($number1,$rep); }?>
+
     </tbody>
   </table>
   </div>
