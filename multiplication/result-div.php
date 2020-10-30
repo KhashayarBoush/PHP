@@ -23,10 +23,10 @@
   </ol>
 </nav>
 <?php
-	$number1 = $_POST['Number'];
-	$rep = $_POST['hm'];
+	$number1 = $_POST['number1div'];
+	$number2 = $_POST['number2div'];
 	$res = 0;
-	if (!$number1 || !$rep){
+	if (!$number1 || !$number2){
 		echo "<div class='alert alert-danger' role='alert'>
     			<br/><hr/><strong>Empty Value is Set</strong>.
 			<hr/></div>";
@@ -36,27 +36,26 @@
   <table class="table table-bordered table-hover table-sm table-striped table-dark text-center" >
   	<thead>
       <tr>
-        <th scope="col">Number</th>
-        <th scope="col">Number</th>
+        <th scope="col">Number 1 </th>
+        <th scope="col">Number 2 </th>
         <th scope="col">Result</th>
       </tr>
     </thead>
     <tbody>
 
 	<?php
-	 function Mul($v1,$v2){
+	 function div_form($v1,$v2){
 		global $res;
-		for($i=0;$i<=$v2;$i++){
-			$res = $i*$v1; ?>
+			$res = $v1 % $v2;
+      ?>
 		    <tr>
-			<td ><?php echo "$i"; ?></td>
-			<td><?php echo "* $v1"; ?></td>
-			<td class="bg-warning"><?php echo "$res"; ?></td>
+    			<td ><?php echo "$v1"; ?></td>
+    			<td><?php echo "$v2"; ?></td>
+    			<td class="bg-warning"><?php echo "$res"; ?></td>
 			</tr>
-		<?php } ?>
 
 	<?php } ?>
-	<?php Mul($number1,$rep); }?>
+	<?php div_form($number1,$number2); }?>
 
     </tbody>
   </table>
