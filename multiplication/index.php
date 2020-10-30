@@ -1,3 +1,32 @@
+<?php
+
+  if (!isset($_GET['checkcookie'])){
+
+    header('Location: index.php?checkcookie');
+
+  }
+
+  if(isset($_POST['username']) && !empty($_POST['username'])){
+    $username = $_POST['username'];
+    //$email = $_POST['email'];
+    setcookie('username',$username,time() + 20);
+    //setcookie('email',$email,time() + 60);
+    $_COOKIE['username'] = $username;
+    //$_COOKIE['email'] = $email;
+  }
+
+  if(isset($_COOKIE['username'])){
+    $username = $_COOKIE['username'];
+    //$email = $_COOKIE['email'];
+    $back = true;
+  } else{
+    $username = '';
+    //$email = '';
+    $back = false;
+  }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,28 +39,33 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script> 
 </head>
 <body>
+
+  <?php if($back): ?>
   <nav class="navbar sticky-top navbar-dark bg-warning">
+  <a class="navbar-brand" href="index.php"><h6 class="text-capitalize text-dark">Wellcome <?php echo "<h6 class='text-dark'><strong>Hola Hola { $username } !! </strong></h6>"; ?> </h6></a>
+</nav>
+<div class="alert alert-success" role="alert">
+    <strong>Well done!</strong> You Are Logedin .
+</div>
+<?php else: ?>
+<nav class="navbar sticky-top navbar-dark bg-warning">
   <a class="navbar-brand" href="index.php"><h6 class="text-capitalize text-dark">Wellcome</h6></a>
 </nav>
-
-<div class="alert alert-dark" role="alert">
-    <strong>Well done!</strong> You can use This App .
+<div class="alert alert-danger" role="alert">
+    <strong>Well done!</strong> You can Log in .
 </div>
-
-<!--
-
-    <div class="container">
-      <form class="border bg-light border-dark mb-4 py-1 px-1 rounded">
+<div class="container">
+      <form method="post" class="border bg-light border-dark mb-4 py-1 px-1 rounded">
   <div class="form-group row">
     <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
     <div class="col-sm-6">
-      <input type="email" class="form-control" id="inputEmail3">
+      <input type="email" name="email" class="form-control" id="inputEmail3">
     </div>
   </div>
   <div class="form-group row">
-    <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+    <label for="inputPassword3" class="col-sm-2 col-form-label">Name</label>
     <div class="col-sm-6">
-      <input type="password" class="form-control" id="inputPassword3">
+      <input type="text" name=username class="form-control" id="inputPassword3">
     </div>
   </div>
   <div class="form-group row">
@@ -41,10 +75,11 @@
   </div>
 </form>
   </div>
-   ------------------------->
-	<div class="container">
+<?php endif; ?>
+
+<div class="container">
     <div class="row">
-      <div class="col-6">
+      <div class=" border-left border-right border-dark  py-2 col-6">
 		
 		<form action="Result.php" method="post">
   <div class="form-row align-items-center">
@@ -67,7 +102,7 @@
   </div>
 </form>
 	</div>
-  <div class="col-6">
+  <div class="col-6 border-right border-dark  py-2 ">
     <form action="result-sum.php" method="post">
   <div class="form-row align-items-center">
     <div class="col-auto">
@@ -94,7 +129,7 @@
 
 <div class="container mt-5">
     <div class="row">
- <div class="col-6">
+ <div class="col-6 border-left border-right border-dark  py-2 ">
     <form action="result-inc.php" method="post">
   <div class="form-row align-items-center">
     <div class="col-auto">
@@ -116,7 +151,7 @@
   </div>
 </form>
   </div>
-  <div class="col-6">
+  <div class="col-6 border-right border-dark  py-2 ">
     <form action="result-div.php" method="post">
   <div class="form-row align-items-center">
     <div class="col-auto">
