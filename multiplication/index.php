@@ -1,9 +1,17 @@
 <?php
 
+######## Start Cach Control With Headers For Don't Chach Site ################
+header("Cache-Control: no-cache, must-revalidate"); // HTTP/1.1
+$exp_time = date('r' , time() - 3600);
+header("Expires: $exp_time"); // Date in the past
+
+##############Stop Cache #################
 
 ############ Start Create Session ###############
   session_start();
   setcookie(session_name(),session_id(),time() + 60);
+
+  /* Give index.php URL ==> */ $Self_url = $_SERVER['PHP_SELF']; 
 
   /*
   if (!isset($_GET['checkcookie'])){
@@ -22,7 +30,7 @@
     //setcookie('email',$email,time() + 60);
     $_SESSION['username'] = $username;
     //$_COOKIE['email'] = $email;
-    header('Refresh: 1; url=index.php');
+    header("Refresh: 1; url=$Self_url");
     echo "<div class='alert alert-success' role='alert'>
     <strong>Well done!</strong> You Are Login NOW .
     <div class='spinner-border' role='status'>
@@ -51,7 +59,7 @@
 
   if (isset($_POST['Logout'])) {
     session_unset();
-    header('Refresh: 1; url=index.php');
+    header("Refresh: 1; url=$Self_url");
     echo "<div class='alert alert-danger' role='alert'>
     <strong>Well done!</strong> You Are LogOUT NOW .
     <div class='spinner-border' role='status'>

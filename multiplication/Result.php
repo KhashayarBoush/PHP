@@ -52,7 +52,7 @@
 			<td ><?php echo "$i"; ?></td>
 			<td><?php echo "* $v1"; ?></td>
 			<td class="bg-warning"><?php echo "$res"; ?></td>
-			</tr>
+			 </tr>
 		<?php } ?>
 
 	<?php } ?>
