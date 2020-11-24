@@ -32,7 +32,7 @@ $dir = __DIR__;
 
 $filename = $dir."/"."Links.data";
 //echo "$filename";
-chmod("$filename", 777);
+//chmod("Links.data", 0777);
 
 ?>
 
