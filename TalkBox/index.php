@@ -31,6 +31,8 @@ else{
 $dir = __DIR__;
 
 $filename = $dir."/"."Links.data";
+//echo "$filename";
+chmod("$filename", 777);
 
 ?>
 
@@ -360,7 +362,7 @@ $filename = $dir."/"."Links.data";
                             $username = $_POST['user'];
                             $link ="$username"." : ".$_POST['link']." $time"."\n"."<hr/>";
                             echo "<span class='sucsess'> Status : Send</span>";
-                            $fp = fopen("$filename",'a+');
+                            $fp = fopen("$filename",'w');
                             fwrite($fp, "$link");
                             fclose($fp);
                         }
