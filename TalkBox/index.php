@@ -1,4 +1,5 @@
 <?php 
+header("Refresh: 25; url=$url");
 $url = $_SERVER['PHP_SELF'];
 $time = date("[ Y/M/d H:i ]");
 session_start();
@@ -25,7 +26,7 @@ else{
 
   if (isset($_POST['Logout'])) {
     session_unset();
-    header("Refresh: 1; url=$url");
+    header("Refresh: 0.2; url=$url");
   }
 
 $dir = __DIR__;
@@ -151,7 +152,7 @@ $filename = $dir."/"."Links.data";
             padding: 0.5%;
             background-color: #223c53;
             width: 95%;
-            height: 50px;
+            height: 39px;
             margin: 0 auto;
             margin-top: 0.2%;
             border-radius: 10px;
@@ -169,7 +170,7 @@ $filename = $dir."/"."Links.data";
             float: right;
             background-color: #223c53;
             margin: 0 auto;
-            width: 330px;
+            width: 180px;
             border-radius: 10px;
 
         }
@@ -177,7 +178,7 @@ $filename = $dir."/"."Links.data";
         .li-navbar{
             display: inline-block;
             background-color: #223c53;
-            border: 1px double lightyellow;
+            border: 1px solid lightyellow;
             border-radius: 5px;
             padding: 3%;
             text-align: center;
@@ -189,7 +190,7 @@ $filename = $dir."/"."Links.data";
             display: block;
             background-color: #223c53;
             color: lightyellow;
-            padding: 4%;
+            padding: 3%;
             text-align: center;
             border-radius: 10px;
 
@@ -198,8 +199,8 @@ $filename = $dir."/"."Links.data";
             width: 40%;
             height: auto;
             margin-top: 5.5%;
-            margin-left: 50%;
-            border: 5px  inset black;
+            margin-left: 53.5%;
+            border: 2px  inset black;
             padding: 5px;
             position:  absolute;
             border-radius: 10px;
@@ -209,7 +210,7 @@ $filename = $dir."/"."Links.data";
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
             margin: 0 auto;
             /*background-color: black;*/
-            border: 5px outset black;
+            border: 3px outset black;
             padding: 5px;
             color: whitesmoke;
             background-color: #223c53;
@@ -221,21 +222,23 @@ $filename = $dir."/"."Links.data";
             width: 40.5%;
             height: 75.5%;
             margin-top: 1%;
-            margin-left: 3%;
-            border: 5px  inset black;
+            margin-left: 2%;
+            border: 3px  inset black;
             padding: 15px;
             position:  absolute;
             overflow-x: hidden;
             border-radius: 10px;
             scroll-behavior: smooth;
             border-radius: 10px;
+            font-size : small;
 
         }
         .get-link-section{
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
             margin: 0 auto;
+            margin-left  :-10px;
             /*background-color: black;*/
-            border: 5px outset black;
+            border: 6px outset black;
             padding: 5px;
             color: whitesmoke;
             background-color: #223c53;
@@ -292,23 +295,34 @@ $filename = $dir."/"."Links.data";
             font-family: Verdana, Geneva, Tahoma, sans-serif;
         }
         .logout-btn{
-            padding: 0.4%;
+            padding: 0.3%;
             width: 8%;
-            height: 40px;
+            height: 30px;
             text-align: center;
             position: absolute;
             float: left;
             background-color: transparent;
             border-style: none;
+            margin-left : 10px;
         }
         .logout-btn-input{
             display: block;
             width: auto;
             height: auto;
             background-color: #d82;
-            padding: 20%;
+            padding: 13%;
             color: whitesmoke;
             border-radius: 10px;
+        }
+        .time{
+            color : whitesmoke;
+            text-size : 5px;
+            font-weight : 800;
+            font-size : 10px;
+        }
+        .username{
+            color : #d82;
+            font-weight : 900;
         }
     </style>
 
@@ -319,15 +333,17 @@ $filename = $dir."/"."Links.data";
     <div>
         <header class="top-header">
             <nav class = "top-navbar">
+            <!--
                 <ul class="ul-navbar">
                     <li class="li-navbar"><a class="a-navbar" href="#">Home</a></li>
-                    <li class="li-navbar"><a class="a-navbar" href="#">Links</a></li>
                     <li class="li-navbar"><a class="a-navbar" href="#">Files</a></li>
                     <li class="li-navbar"><a class="a-navbar" href="#">Login</a></li>
                 </ul>
+                -->
                 <form class="logout-btn" method="post" action= "<?php $url ?>">
                         <li style=" border-style:none;" class="li-navbar"><input class="logout-btn-input" type="submit" name="Logout" value="Logout"></li>
                     </form>
+            
             </nav>
         </header>
         <main class="main-data">
@@ -337,16 +353,16 @@ $filename = $dir."/"."Links.data";
                 
                 <input class="main-form-input" type="text" name="link" placeholder="Massage">
                 <br>
-                <input class="main-form-input"  type="text" name="user" placeholder="Username" value=
-                "<?php 
+                <input class="main-form-input"  type="text" name="user" 
+                <?php 
                 if(isset($_SESSION['user_name'])){
-                        $user_name = $_SESSION['user_name'];
-                        echo "$user_name";
-                }
-                else {
-                    echo "User Gust";
-                } 
-                ?>"require>
+                        $user_name = $_SESSION['user_name']; ?>
+                        value = <?php echo "$user_name"; ?>
+                 <?php } 
+                else { ?>
+                    placeholder="Username"
+               <?php } ?>
+               "require>
                 
                 <input class="main-form-input-submit" type="submit" name="submit-link-form" value="Send">
                 </form>
@@ -360,9 +376,9 @@ $filename = $dir."/"."Links.data";
                         if(isset($_POST['link']) && !empty($_POST['link']) && isset($_POST['user']) && !empty($_POST['user'])){
                             $flag = 1;
                             $username = $_POST['user'];
-                            $link ="$username"." : ".$_POST['link']." $time"."\n"."<hr/>";
+                            $link ="<span class=username>$username<span>"." : ".$_POST['link']." <span class='time'>$time</span>"."\n"."<hr/>";
                             echo "<span class='sucsess'> Status : Send</span>";
-                            $fp = fopen("$filename",'w');
+                            $fp = fopen("$filename",'a+');
                             fwrite($fp, "$link");
                             fclose($fp);
                         }
