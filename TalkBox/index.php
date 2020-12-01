@@ -1,5 +1,5 @@
 <?php 
-header("Refresh: 25; url=$url");
+//header("Refresh: 25; url=$url");
 $url = $_SERVER['PHP_SELF'];
 $time = date("[ Y/M/d H:i ]");
 session_start();
@@ -26,7 +26,7 @@ else{
 
   if (isset($_POST['Logout'])) {
     session_unset();
-    header("Refresh: 0.2; url=$url");
+    header("Refresh: 1; url=$url");
   }
 
 $dir = __DIR__;
