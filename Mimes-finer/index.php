@@ -1,5 +1,31 @@
 <?php
 error_reporting(E_ALL & ~E_NOTICE);
+
+$dir = __DIR__.DIRECTORY_SEPARATOR."Data".DIRECTORY_SEPARATOR;
+
+function Checkk_file($file){
+
+    if(file_exists($file)){
+        if(is_file($file)){
+            $size = filesize($file);
+            $filetype = 'File';
+            echo "<ul>";
+            echo "<li style='list-style:decimal;'>\t$filetype : file is <span style='color:#1D9;'>Exsit</span> ==> <br>$file <span style='color:#D4D;'>($size'byte's)</span></li><hr/>";
+            echo "</ul>";
+        }
+        else{
+            $filetype = 'Directory';
+            echo "$filetype : file is Exsit ==> $file";
+        }
+    }
+    else{
+        echo "File Not Found <br>";
+    }
+}
+
+$item = $dir."text.txt";
+Checkk_file($item);
+
 function Type_file_finder($paramter){
     $mimes = 
     array(
