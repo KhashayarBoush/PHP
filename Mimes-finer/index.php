@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ALL & ~E_NOTICE);
 function Type_file_finder($paramter){
     $mimes = 
     array(
@@ -119,9 +120,25 @@ $i = 0;
     }
 }
 
-$type = Type_file_finder('text');
+$id = $_GET['id'];
 
-header ("Content-type:$type");
-readfile('Data/text.txt');
+switch($id){
+    case 1 : 
+        $filname = 'text.txt';
+        $type = Type_file_finder('text');
+        break;
+    
+    }
+
+    if(is_null($filname)){
+    http_response_code(404);
+    echo "Not Found";
+}
+else{
+    header ("Content-type:$type");
+    readfile("Data/$filname");
+}
+
+
 
 ?>
